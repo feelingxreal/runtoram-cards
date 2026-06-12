@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>RunToRam — Figma export (1080×1350, square)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:  #F3EEE3;
+    --black:  #0E0E0E;
+    --indigo: #2A2EFF;
+    --lime:   #D6FF3F;
+    --orange: #FF4D1F;
+    --ink-60: rgba(14,14,14,.55);
+    --cr-60:  rgba(243,238,227,.6);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto Condensed',sans-serif; }
+
+  /* --- Figma export layout: full-size cards, stacked, NO rounding --- */
+  body {
+    background:transparent;        /* чисто для импорта: без лишнего фон-слоя в Figma */
+    padding:60px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:60px;
+  }
+
+  /* full Instagram canvas, square corners (border-radius removed on purpose) */
+  .frame { width:1080px; height:1350px; overflow:hidden; flex-shrink:0; }
+
+  .card {
+    width:1080px; height:1350px;
+    position:relative; overflow:hidden;
+    padding:80px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    /* no transform scale — rendered 1:1; no border-radius — square corners */
+  }
+
+  /* ---- shared atoms ---- */
+  .top { display:flex; justify-content:space-between; align-items:center; z-index:3; position:relative; }
+  .bot { display:flex; justify-content:space-between; align-items:flex-end; z-index:3; position:relative; gap:24px; }
+
+  .wm { font-size:30px; font-weight:800; letter-spacing:-.02em; }
+  .tag {
+    font-size:24px; font-weight:600; letter-spacing:.02em;
+    padding:14px 30px; border-radius:999px;
+  }
+  .kicker { font-size:28px; font-weight:500; letter-spacing:.01em; max-width:560px; line-height:1.35; }
+
+  .circle {
+    width:96px; height:96px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:46px; font-weight:500; flex-shrink:0;
+  }
+
+  /* icons */
+  .ico { display:block; }
+  .circle .ico { width:48px; height:48px; }
+
+  .pill-mark {
+    display:inline-flex; align-items:center; gap:14px;
+    padding:18px 32px; border-radius:999px;
+    font-size:34px; font-weight:700;
+  }
+
+  /* hero type */
+  .hero {
+    font-weight:800; letter-spacing:-.045em; line-height:.9;
+  }
+  .it { font-style:normal; font-weight:800; }
+
+  /* nested widget */
+  .widget {
+    border-radius:38px; padding:48px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+
+  /* ============================================================= 01
+     КТО МЫ — indigo, giant number (à la "1M")                     */
+  .c1 { background:var(--orange); color:#fff; }
+  .c1 .num { font-size:300px; font-weight:800; letter-spacing:-.04em; line-height:.9; color:#fff; white-space:nowrap; text-align:center; }
+  .c1 .tag { background:var(--lime); color:var(--black); }
+  .c1 .circle { background:#fff; color:var(--orange); }
+  .c1 .cap { font-size:30px; font-weight:500; max-width:540px; text-align:right; line-height:1.3; color:#fff; }
+
+  /* ============================================================= 02
+     USDT → КЭШ — cream, massive type w/ italic accent             */
+  .c2 { background:var(--cream); color:var(--black); }
+  .c2 .hero { font-size:166px; }
+  .c2 .it { color:var(--indigo); }
+  .c2 .tag { background:var(--black); color:var(--cream); }
+  .c2 .circle { background:var(--black); color:var(--cream); }
+
+  /* ============================================================= 03
+     ПЕРЕВОД КАПИТАЛА — black, nested stat widgets (à la GROWTH)    */
+  .c3 { background:var(--black); color:var(--cream); }
+  .c3 .hero { font-size:120px; }
+  .c3 .plus { width:96px; height:96px; border-radius:50%; background:var(--lime); color:var(--black);
+              display:flex; align-items:center; justify-content:center; font-size:64px; font-weight:400; }
+  .c3 .grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .c3 .w-a { background:var(--indigo); color:var(--cream); height:360px; }
+  .c3 .w-b { background:var(--cream); color:var(--black); height:360px; }
+  .c3 .w-lbl { font-size:30px; font-weight:500; opacity:.8; }
+  .c3 .w-big { font-size:120px; font-weight:800; letter-spacing:-.04em; line-height:1; }
+  .c3 .tag { background:var(--orange); color:var(--black); }
+  .c3 .plus .ico { width:54px; height:54px; }
+
+  /* ============================================================= 04
+     БЕЛЫЕ ПЕРЕВОДЫ 5% — indigo, horizontal bar (à la Revenue)     */
+  .c4 { background:var(--indigo); color:var(--cream); }
+  .c4 .bartop { display:flex; justify-content:flex-end; font-size:30px; font-weight:600; opacity:.85; }
+  .c4 .bar { display:flex; height:300px; border-radius:28px; overflow:hidden; margin:18px 0; }
+  .c4 .seg-a { background:var(--black); flex:0 0 62%; position:relative; }
+  .c4 .seg-b { background:var(--lime); flex:1; position:relative; }
+  .c4 .seg-a .pc { position:absolute; top:28px; left:36px; color:var(--cream); font-size:34px; font-weight:500; }
+  .c4 .seg-a .pc b { display:block; margin-top:10px; font-size:44px; color:var(--lime); }
+  .c4 .seg-b .pc { position:absolute; top:28px; left:36px; color:var(--black); font-size:44px; font-weight:800; }
+  .c4 .seg-b .pc-b { position:absolute; bottom:28px; left:36px; color:var(--black); font-size:44px; font-weight:800; }
+  .c4 .barfoot { display:flex; justify-content:space-between; align-items:flex-end; }
+  .c4 .barfoot .l { font-size:32px; font-weight:500; }
+  .c4 .barfoot .r { font-size:60px; font-weight:800; letter-spacing:-.03em; color:var(--lime); }
+  .c4 .hero { font-size:104px; }
+  .c4 .tag { background:var(--lime); color:var(--black); }
+  .c4 .circle { background:var(--cream); color:var(--indigo); }
+
+  /* ============================================================= 05
+     КРУПНЫЕ ПОКУПКИ — black, stat stack (à la 300%/275%/7x)       */
+  .c5 { background:var(--black); color:var(--cream); }
+  .c5 .row5 { border-top:2px solid rgba(243,238,227,.18); padding:30px 0; }
+  .c5 .row5:last-of-type { border-bottom:2px solid rgba(243,238,227,.18); }
+  .c5 .big5 { font-size:102px; font-weight:800; letter-spacing:-.04em; line-height:.95; color:var(--orange); }
+  .c5 .big5.alt { color:var(--lime); }
+  .c5 .big5.alt2 { color:var(--indigo); -webkit-text-stroke:0; }
+  .c5 .lbl5 { font-size:30px; font-weight:600; opacity:.75; margin-top:6px; }
+  .c5 .tag { background:var(--orange); color:var(--black); }
+  .c5 .circle { background:var(--orange); color:var(--black); }
+
+  /* ============================================================= 06
+     РОДНЫЕ В РОССИИ — cream, area chart (à la Active users)       */
+  .c6 { background:var(--cream); color:var(--black); }
+  .c6 .hero { font-size:96px; }
+  .c6 .chartcard { background:#fff; border-radius:38px; padding:44px; }
+  .c6 . chead { display:flex; justify-content:space-between; align-items:center; }
+  .c6 .clbl { font-size:32px; font-weight:500; }
+  .c6 .cpill { background:var(--orange); color:#fff; font-size:30px; font-weight:700; padding:12px 26px; border-radius:999px; }
+  .c6 .tag { background:var(--indigo); color:var(--cream); }
+  .c6 .circle { background:var(--black); color:var(--cream); }
+
+  /* ============================================================= 07
+     BESTCHANGE — cream/grey, framed pill mark (à la $72 000)      */
+  .c7 { background:#E4DFD4; color:var(--black); }
+  .c7 .markbox {
+    background:var(--black); border-radius:48px;
+    padding:70px 60px; display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .c7 .markbox .bc { font-size:96px; font-weight:800; letter-spacing:-.03em; color:var(--cream); }
+  .c7 .markbox .bc b { color:var(--lime); }
+  .c7 .plus {
+    position:absolute; bottom:-46px; left:50%; transform:translateX(-50%);
+    width:96px; height:96px; border-radius:50%; background:var(--lime); color:var(--black);
+    display:flex; align-items:center; justify-content:center; font-size:64px; font-weight:400;
+  }
+  .c7 .plus .ico { width:54px; height:54px; }
+  .c7 .hero { font-size:88px; }
+  .c7 .tag { background:var(--indigo); color:var(--cream); }
+
+  /* ============================================================= 08
+     ПОЧЕМУ ДОВЕРЯЮТ — indigo, big "8" + nested widgets            */
+  .c8 { background:var(--indigo); color:var(--cream); }
+  .c8 .big8 { font-size:300px; font-weight:800; letter-spacing:-.05em; line-height:.8; }
+  .c8 .big8 small { font-size:60px; font-weight:600; letter-spacing:0; display:block; opacity:.9; }
+  .c8 .h8 { font-size:120px; font-weight:800; letter-spacing:-.02em; line-height:.92; }
+  .c8 .grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .c8 .w { border-radius:34px; padding:40px; height:230px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; }
+  .c8 .chk { position:absolute; top:30px; right:30px; width:44px; height:44px; }
+  .c8 .w.lime { background:var(--lime); color:var(--black); }
+  .c8 .w.cream { background:var(--cream); color:var(--black); }
+  .c8 .w .t { font-size:30px; font-weight:600; opacity:.7; }
+  .c8 .w .v { font-size:50px; font-weight:800; letter-spacing:-.03em; line-height:1; }
+  .c8 .tag { background:var(--lime); color:var(--black); }
+  .c8 .circle { background:var(--cream); color:var(--indigo); }
+
+  /* ============================================================= 09
+     КУРС СЕЙЧАС — lime, CTA bold type                             */
+  .c9 { background:var(--lime); color:var(--black); }
+  .c9 .hero { font-size:166px; }
+  .c9 .it { color:var(--indigo); }
+  .c9 .botbar {
+    background:var(--black); color:var(--cream); border-radius:999px;
+    padding:34px 50px; display:flex; align-items:center; justify-content:space-between;
+    font-size:42px; font-weight:700;
+  }
+  .c9 .botbar .circle { width:80px; height:80px; background:var(--lime); color:var(--black); font-size:40px; }
+  .c9 .tag { background:var(--black); color:var(--lime); }
+
+</style>
+</head>
+<body>
+
+  <!-- icon definitions (clean, thick, straight) -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <defs>
+      <symbol id="ic-arrow" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="18" x2="18" y2="6"/>
+          <polyline points="9 6 18 6 18 15"/>
+        </g>
+      </symbol>
+      <symbol id="ic-check" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="5 13 10 18 19 6"/>
+        </g>
+      </symbol>
+      <symbol id="ic-plus" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- 01 КТО МЫ -->
+  <div class="frame"><div class="card c1">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div class="num">8+ ЛЕТ</div>
+    <div class="bot">
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+      <div class="cap">Обмениваем крипту и фиат<br>для тех, кто живёт между странами</div>
+    </div>
+  </div></div>
+
+  <!-- 02 USDT → КЭШ -->
+  <div class="frame"><div class="card c2">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div class="hero">ВЫДАДИМ<br>КЭШ В<br><span class="it">40+</span><br>СТРАНАХ</div>
+    <div class="bot">
+      <span class="kicker">USDT → евро · доллары · дирхамы</span>
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+    </div>
+  </div></div>
+
+  <!-- 03 ПЕРЕВОД КАПИТАЛА -->
+  <div class="frame"><div class="card c3">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div>
+      <div class="hero">ПЕРЕВОД<br>КАПИТАЛА</div>
+    </div>
+    <div class="grid">
+      <div class="widget w-a">
+        <div class="w-lbl">Откуда</div>
+        <div class="w-big">RUB</div>
+      </div>
+      <div class="widget w-b">
+        <div class="w-lbl">Куда</div>
+        <div class="w-big">EUR</div>
+      </div>
+    </div>
+    <div class="bot">
+      <span class="kicker">Переводы между странами без банковской бюрократии</span>
+      <div class="plus"><svg class="ico"><use href="#ic-plus"/></svg></div>
+    </div>
+  </div></div>
+
+  <!-- 04 БЕЛЫЕ ПЕРЕВОДЫ 5% -->
+  <div class="frame"><div class="card c4">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div>
+      <div class="bar">
+        <div class="seg-a"><span class="pc">Сумма перевода<br><b>от 10 000 €</b></span></div>
+        <div class="seg-b"><span class="pc">5%</span><span class="pc-b">1-2 дня</span></div>
+      </div>
+    </div>
+    <div class="hero">БЕЛЫЕ<br>БАНКОВСКИЕ<br>ПЕРЕВОДЫ<br>ЗА ГРАНИЦУ</div>
+    <div class="bot">
+      <span class="kicker">Легально, с документами<br>и чистой историей</span>
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+    </div>
+  </div></div>
+
+  <!-- 05 КРУПНЫЕ ПОКУПКИ -->
+  <div class="frame"><div class="card c5">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div>
+      <div class="row5"><div class="big5">НЕДВИЖИМОСТЬ</div></div>
+      <div class="row5"><div class="big5 alt">АВТО</div></div>
+      <div class="row5"><div class="big5 alt2">ОБОРУДОВАНИЕ</div></div>
+    </div>
+    <div class="bot">
+      <span class="kicker">Оплатим за ваши USDT: инвойс, счёт, мастер-чек, прямой платёж</span>
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+    </div>
+  </div></div>
+
+  <!-- 06 РОДНЫЕ В РОССИИ -->
+  <div class="frame"><div class="card c6">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div class="hero">ВЫ – ЗА<br>ГРАНИЦЕЙ,<br>БЛИЗКИЕ –<br>В РОССИИ</div>
+    <div class="chartcard">
+      <div class="chead" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+        <span class="clbl">USDT → RUB близким</span>
+        <span class="cpill">раз в месяц</span>
+      </div>
+      <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block; overflow:visible;">
+        <defs><filter id="dotglow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="7"/></filter></defs>
+        <line x1="0" y1="80"  x2="900" y2="80"  stroke="#e3e3e3" stroke-width="2" stroke-dasharray="6 8"/>
+        <line x1="0" y1="150" x2="900" y2="150" stroke="#e3e3e3" stroke-width="2" stroke-dasharray="6 8"/>
+        <line x1="0" y1="220" x2="900" y2="220" stroke="#e3e3e3" stroke-width="2" stroke-dasharray="6 8"/>
+        <path d="M20,250 C80,250 80,235 140,235 C200,235 200,250 260,250 C320,250 320,195 380,195 C440,195 440,210 500,210 C560,210 560,150 620,150 C680,150 680,120 740,120 C800,120 800,55 860,55 L860,300 L20,300 Z" fill="#FF4D1F" fill-opacity="0.16"/>
+        <path d="M20,250 C80,250 80,235 140,235 C200,235 200,250 260,250 C320,250 320,195 380,195 C440,195 440,210 500,210 C560,210 560,150 620,150 C680,150 680,120 740,120 C800,120 800,55 860,55" fill="none" stroke="#FF4D1F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="860" cy="55" r="18" fill="#FF4D1F" opacity="0.5" filter="url(#dotglow)"/>
+        <circle cx="860" cy="55" r="13" fill="#FF7A4D" opacity="0.4" filter="url(#dotglow)"/>
+        <circle cx="860" cy="55" r="13" fill="#FF4D1F"/>
+      </svg>
+    </div>
+    <div class="bot">
+      <span class="kicker">Деньги у них, пока вы пьёте кофе</span>
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+    </div>
+  </div></div>
+
+  <!-- 07 BESTCHANGE -->
+  <div class="frame"><div class="card c7">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div class="markbox">
+      <div class="bc">Best<b>Change</b></div>
+      <div class="plus"><svg class="ico"><use href="#ic-check"/></svg></div>
+    </div>
+    <div class="hero">НАС МОЖНО<br>ПРОВЕРИТЬ</div>
+    <div class="bot">
+      <span class="kicker">Отзывы от наших клиентов</span>
+    </div>
+  </div></div>
+
+  <!-- 08 ПОЧЕМУ ДОВЕРЯЮТ -->
+  <div class="frame"><div class="card c8">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div class="h8">РАБОТАЕМ<br>С 2018 ГОДА</div>
+    <div class="grid">
+      <div class="w lime"><svg class="ico chk"><use href="#ic-check"/></svg><span class="v">Лучший<br>курс</span></div>
+      <div class="w cream"><svg class="ico chk"><use href="#ic-check"/></svg><span class="v">Свои<br>резервы</span></div>
+    </div>
+    <div class="bot">
+      <span class="kicker">Продукт с репутацией в криптокомьюнити</span>
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+    </div>
+  </div></div>
+
+  <!-- 09 КУРС СЕЙЧАС -->
+  <div class="frame"><div class="card c9">
+    <div class="top"><span class="wm">RUN2RAM</span></div>
+    <div class="hero">УЗНАТЬ<br>КУРС<br><span class="it">ЗА 10</span><br>СЕКУНД</div>
+    <div class="botbar">
+      <span>@Run_To_Ram_bot</span>
+      <div class="circle"><svg class="ico"><use href="#ic-arrow"/></svg></div>
+    </div>
+  </div></div>
+
+</body>
+</html>
