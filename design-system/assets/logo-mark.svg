@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110">
-  <!-- Знак RunToRam: чистый вектор. Красится через CSS-маску (background-color) или fill. -->
-  <path d="M24 18 L33 31 L73 31 L31 79 L71 79 L80 92"
-        fill="none" stroke="#000" stroke-width="17"
-        stroke-linejoin="round" stroke-linecap="round"/>
-</svg>
