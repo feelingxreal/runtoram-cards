@@ -77,4 +77,23 @@
   --rtr-glow-orange: 0 0 22px rgba(245,74,34,.45);
   --rtr-glow-lime:   0 0 22px rgba(217,242,1,.55);
   --rtr-glow-indigo: 0 0 22px rgba(70,84,254,.45);
+
+  /* ---- Градиенты (выбранные) ---- */
+  /* тональные */
+  --rtr-grad-orange:  linear-gradient(135deg,#FF8A5E,#F54A22 55%,#E0380F);
+  --rtr-grad-lime:    linear-gradient(135deg,#EEFF7A,#D9F201 55%,#B6CC00);
+  --rtr-grad-indigo:  linear-gradient(135deg,#8C95FF,#4654FE 55%,#2E3BE0);
+  --rtr-grad-ink:     linear-gradient(135deg,#3A3A3A,#1C1C1C 65%,#000);
+  --rtr-grad-cream:   linear-gradient(135deg,#FFFFFF,#F9F5EF 50%,#ECE3CE);
+  /* миксы (чистые) */
+  --rtr-grad-orange-lime:  linear-gradient(120deg,#F54A22,#FF9A1E 50%,#D9F201);
+  --rtr-grad-orange-cream: linear-gradient(135deg,#F54A22,#FFC9B0 65%,#F9F5EF);
+  --rtr-grad-lime-cream:   linear-gradient(135deg,#D9F201,#EEF7A8 55%,#F9F5EF);
+  --rtr-grad-indigo-cream: linear-gradient(135deg,#4654FE,#BFC6FF 60%,#F9F5EF);
+  /* контрастные — через светлую середину (без грязи) */
+  --rtr-grad-lime-indigo:   linear-gradient(120deg,#D9F201,#CFE3FF 50%,#4654FE);
+  --rtr-grad-orange-indigo: linear-gradient(120deg,#F54A22,#FFD7C6 38%,#C9CEFF 64%,#4654FE);
+  /* mesh */
+  --rtr-grad-mesh:      radial-gradient(circle at 18% 20%,#D9F201,transparent 42%),radial-gradient(circle at 84% 22%,#4654FE,transparent 44%),radial-gradient(circle at 52% 92%,#F54A22,transparent 42%),#F9F5EF;
+  --rtr-grad-mesh-warm: radial-gradient(circle at 20% 80%,#F54A22,transparent 55%),radial-gradient(circle at 82% 22%,#D9F201,transparent 55%),#FFF1D2;
 }

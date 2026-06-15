@@ -107,6 +107,12 @@
 
   .arrows { width:100%; height:auto; display:block; border-radius:10px; margin-top:18px; }
   .copy-hint { font-size:12px; color:var(--rtr-gray-500); margin-top:14px; }
+  .grad-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px; }
+  .grad { border-radius:16px; overflow:hidden; background:#fff; box-shadow:var(--rtr-shadow-card); }
+  .grad .gsw { height:108px; }
+  .grad .gm { padding:9px 12px 11px; }
+  .grad .gn { font-family:var(--rtr-font-display); font-weight:700; font-size:13px; }
+  .grad code { display:block; margin-top:3px; font-size:10px; color:var(--rtr-gray-500); }
   footer { margin-top:64px; padding-top:28px; border-top:1px solid var(--rtr-gray-200);
     color:var(--rtr-gray-500); font-size:13px; }
   footer code { background:var(--rtr-gray-100); padding:2px 6px; border-radius:5px;
@@ -316,6 +322,38 @@
       <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/globe.png);mask-image:url(assets/globe.png);background:var(--rtr-indigo)"></span><span class="nm">Indigo</span></div>
     </div>
     <p class="copy-hint">Покрасить в любой токен: <code>background: var(--rtr-orange)</code> на элементе с <code>mask-image</code>.</p>
+  </section>
+
+  <!-- ===== GRADIENTS ===== -->
+  <section>
+    <div class="label">08 · Градиенты</div>
+    <h2 class="sec-title">Фирменные градиенты</h2>
+    <p class="sec-note">Чистые градиенты бренда — без грязных серых переходов. Контрастные пары идут через светлую середину. Токены: <code>--rtr-grad-…</code> в tokens.css.</p>
+
+    <div class="label" style="margin-top:24px;">Тональные</div>
+    <div class="grad-grid">
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-orange)"></div><div class="gm"><div class="gn">Оранж</div><code>--rtr-grad-orange</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-lime)"></div><div class="gm"><div class="gn">Лайм</div><code>--rtr-grad-lime</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-indigo)"></div><div class="gm"><div class="gn">Индиго</div><code>--rtr-grad-indigo</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-ink)"></div><div class="gm"><div class="gn">Чёрный</div><code>--rtr-grad-ink</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-cream);border-bottom:1px solid var(--rtr-gray-200)"></div><div class="gm"><div class="gn">Бежевый</div><code>--rtr-grad-cream</code></div></div>
+    </div>
+
+    <div class="label" style="margin-top:24px;">Миксы и контрастные</div>
+    <div class="grad-grid">
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-orange-lime)"></div><div class="gm"><div class="gn">Оранж → Лайм</div><code>--rtr-grad-orange-lime</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-orange-cream)"></div><div class="gm"><div class="gn">Оранж → Беж</div><code>--rtr-grad-orange-cream</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-lime-cream)"></div><div class="gm"><div class="gn">Лайм → Беж</div><code>--rtr-grad-lime-cream</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-indigo-cream)"></div><div class="gm"><div class="gn">Индиго → Беж</div><code>--rtr-grad-indigo-cream</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-lime-indigo)"></div><div class="gm"><div class="gn">Лайм → Индиго</div><code>--rtr-grad-lime-indigo</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-orange-indigo)"></div><div class="gm"><div class="gn">Оранж → Индиго</div><code>--rtr-grad-orange-indigo</code></div></div>
+    </div>
+
+    <div class="label" style="margin-top:24px;">Mesh</div>
+    <div class="grad-grid">
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-mesh)"></div><div class="gm"><div class="gn">Mesh · 3 акцента</div><code>--rtr-grad-mesh</code></div></div>
+      <div class="grad"><div class="gsw" style="background:var(--rtr-grad-mesh-warm)"></div><div class="gm"><div class="gn">Mesh · тёплый</div><code>--rtr-grad-mesh-warm</code></div></div>
+    </div>
   </section>
 
   <footer>
