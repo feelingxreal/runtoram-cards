@@ -77,7 +77,7 @@
   .hl { font-family:var(--rtr-font-display); font-weight:800; display:inline-block;
     padding:.02em .22em; border-radius:6px; letter-spacing:-.02em; }
   /* чистая одинарная обводка: тоньше штрих + воздух между буквами, чтобы не слипались */
-  .outline { color:transparent; -webkit-text-stroke:2px var(--rtr-ink); letter-spacing:.05em; }
+  .outline { color:transparent; -webkit-text-stroke:2px var(--rtr-ink); letter-spacing:.03em; paint-order:stroke; }
 
   /* монохромные SVG-элементы, перекрашиваемые через CSS-маску (любой фирменный цвет, без потери качества) */
   .mono { display:inline-block; width:120px; height:120px;
@@ -222,15 +222,16 @@
 
     <div class="panel" style="background:linear-gradient(135deg,#7E88FF,#4654FE 45%,#E9EAFF);">
       <div class="label" style="color:#fff;opacity:.9;">Дисплей · контур · скобки</div>
-      <div class="disp" style="font-size:72px;line-height:.86;color:var(--rtr-ink);margin-top:8px;">RUB · USDT</div>
-      <div class="disp outline" style="font-size:72px;line-height:.86;">{ USD }</div>
-      <div class="disp" style="font-size:72px;line-height:.86;color:var(--rtr-ink);">EURO</div>
+      <div class="disp" style="font-size:80px;line-height:.9;color:var(--rtr-ink);margin-top:8px;">RUB · USDT</div>
+      <div class="disp outline" style="font-size:80px;line-height:.9;">{ USD }</div>
+      <div class="disp" style="font-size:80px;line-height:.9;color:var(--rtr-ink);">EURO</div>
       <div class="row" style="margin-top:18px;align-items:baseline;">
-        <span class="disp" style="font-size:48px;color:var(--rtr-orange)">USDT</span>
-        <span class="disp outline" style="font-size:48px;-webkit-text-stroke-color:var(--rtr-orange)">USDT</span>
-        <span class="disp" style="font-size:48px;color:var(--rtr-lime);text-shadow:0 1px 0 rgba(0,0,0,.15)">USDT</span>
-        <span class="disp outline" style="font-size:48px;-webkit-text-stroke-color:#fff;color:transparent">USDT</span>
+        <span class="disp" style="font-size:64px;color:var(--rtr-orange)">USDT</span>
+        <span class="disp outline" style="font-size:64px;-webkit-text-stroke-color:var(--rtr-orange)">USDT</span>
+        <span class="disp" style="font-size:64px;color:var(--rtr-lime);text-shadow:0 1px 0 rgba(0,0,0,.15)">USDT</span>
+        <span class="disp outline" style="font-size:64px;-webkit-text-stroke-color:#fff;color:transparent">USDT</span>
       </div>
+      <p style="margin-top:16px;font-family:var(--rtr-font-body);font-size:13px;line-height:1.5;color:rgba(28,28,28,.62);">Рецепт контура (Figma): <b>Roboto Condensed Bold</b> · Fill: none · Stroke <b>Outside 2–3px</b> (#1C1C1C или бренд-цвет) · Letter-spacing 0. В CSS контур рисуется по центру (-webkit-text-stroke) — это приближение, для пиксель-точности используй Outside-обводку в Figma.</p>
     </div>
   </section>
 
