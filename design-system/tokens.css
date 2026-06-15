@@ -94,6 +94,5 @@
   --rtr-grad-lime-indigo:   linear-gradient(120deg,#D9F201,#CFE3FF 50%,#4654FE);
   --rtr-grad-orange-indigo: linear-gradient(120deg,#F54A22,#FFD7C6 38%,#C9CEFF 64%,#4654FE);
   /* mesh */
-  --rtr-grad-mesh:      radial-gradient(circle at 18% 20%,#D9F201,transparent 42%),radial-gradient(circle at 84% 22%,#4654FE,transparent 44%),radial-gradient(circle at 52% 92%,#F54A22,transparent 42%),#F9F5EF;
   --rtr-grad-mesh-warm: radial-gradient(circle at 20% 80%,#F54A22,transparent 55%),radial-gradient(circle at 82% 22%,#D9F201,transparent 55%),#FFF1D2;
 }
