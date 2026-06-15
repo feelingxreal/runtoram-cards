@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Монохромный вектор. Используется как CSS-маска: цвет задаётся background-color. -->
+  <defs>
+    <pattern id="coin-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="4.5" cy="4.5" r="2" fill="#000"/>
+    </pattern>
+    <clipPath id="coin-face"><circle cx="100" cy="100" r="80"/></clipPath>
+  </defs>
+
+  <!-- полутоновое «гравированное» поле монеты -->
+  <g clip-path="url(#coin-face)">
+    <rect x="0" y="0" width="200" height="200" fill="url(#coin-dots)"/>
+  </g>
+
+  <!-- кольца канта -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#000" stroke-width="7"/>
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#000" stroke-width="3"/>
+
+  <!-- символ Tether ₮ (сплошной, поверх полутона) -->
+  <g fill="#000">
+    <rect x="55" y="54" width="90" height="15" rx="2"/>
+    <rect x="92" y="54" width="16" height="94" rx="2"/>
+  </g>
+  <path d="M62 82 Q100 122 138 82" fill="none" stroke="#000" stroke-width="13" stroke-linecap="round"/>
+</svg>

@@ -76,7 +76,17 @@
   .panel { border-radius:var(--rtr-r-card); padding:30px; margin-top:16px; }
   .hl { font-family:var(--rtr-font-display); font-weight:800; display:inline-block;
     padding:.02em .22em; border-radius:6px; letter-spacing:-.02em; }
-  .outline { color:transparent; -webkit-text-stroke:3px var(--rtr-ink); }
+  /* чистая одинарная обводка: тоньше штрих + воздух между буквами, чтобы не слипались */
+  .outline { color:transparent; -webkit-text-stroke:2px var(--rtr-ink); letter-spacing:.05em; }
+
+  /* монохромные SVG-элементы, перекрашиваемые через CSS-маску (любой фирменный цвет, без потери качества) */
+  .mono { display:inline-block; width:120px; height:120px;
+    -webkit-mask-repeat:no-repeat; -webkit-mask-position:center; -webkit-mask-size:contain;
+    mask-repeat:no-repeat; mask-position:center; mask-size:contain; }
+  .mono-tile { background:#fff; border-radius:var(--rtr-r-card); padding:16px;
+    box-shadow:var(--rtr-shadow-card); display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .mono-tile .nm { font-family:var(--rtr-font-display); font-weight:700; font-size:12px;
+    text-transform:uppercase; letter-spacing:.06em; color:var(--rtr-gray-500); }
 
   /* ---------- 3D OBJECTS ---------- */
   .glass-row { display:flex; gap:14px; align-items:center; justify-content:center;
@@ -273,6 +283,30 @@
       </div>
       <input class="input" placeholder="Сумма в USDT">
     </div>
+  </section>
+
+  <!-- ===== ICONS / COINS ===== -->
+  <section>
+    <div class="label">07 · Монеты и иконки</div>
+    <h2 class="sec-title">Гравюра в фирменных цветах</h2>
+    <p class="sec-note">Монохромные элементы нарисованы как <b>вектор (SVG)</b> с полутоновой «гравюрой» и красятся через CSS-маску — любой фирменный цвет, любой размер, без пикселизации.</p>
+
+    <div class="label" style="margin-top:24px;">Монета USDT</div>
+    <div class="row" style="margin-top:12px;">
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/coin-usdt.svg);mask-image:url(assets/coin-usdt.svg);background:var(--rtr-ink)"></span><span class="nm">Ink</span></div>
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/coin-usdt.svg);mask-image:url(assets/coin-usdt.svg);background:var(--rtr-orange)"></span><span class="nm">Orange</span></div>
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/coin-usdt.svg);mask-image:url(assets/coin-usdt.svg);background:var(--rtr-lime)"></span><span class="nm">Lime</span></div>
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/coin-usdt.svg);mask-image:url(assets/coin-usdt.svg);background:var(--rtr-indigo)"></span><span class="nm">Indigo</span></div>
+    </div>
+
+    <div class="label" style="margin-top:26px;">Глобус · 35 стран</div>
+    <div class="row" style="margin-top:12px;">
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/globe.svg);mask-image:url(assets/globe.svg);background:var(--rtr-ink)"></span><span class="nm">Ink</span></div>
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/globe.svg);mask-image:url(assets/globe.svg);background:var(--rtr-orange)"></span><span class="nm">Orange</span></div>
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/globe.svg);mask-image:url(assets/globe.svg);background:var(--rtr-lime)"></span><span class="nm">Lime</span></div>
+      <div class="mono-tile"><span class="mono" style="-webkit-mask-image:url(assets/globe.svg);mask-image:url(assets/globe.svg);background:var(--rtr-indigo)"></span><span class="nm">Indigo</span></div>
+    </div>
+    <p class="copy-hint">Покрасить в любой токен: <code>background: var(--rtr-orange)</code> на элементе с <code>mask-image</code>.</p>
   </section>
 
   <footer>
