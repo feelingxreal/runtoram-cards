@@ -1,0 +1,80 @@
+/* ============================================================
+   RunToRam · Design Tokens
+   Источник правды для цветов, типографики, радиусов, отступов.
+   Извлечено с info.runtoram.com + фирменные ассеты.
+   ============================================================ */
+
+:root {
+  /* ---- Цвета: ядро ---- */
+  --rtr-orange:        #F54A22;  /* основной акцент, CTA */
+  --rtr-ink:           #1C1C1C;  /* текст, тёмные секции */
+  --rtr-cream:         #F9F5EF;  /* светлый фон */
+  --rtr-white:         #FFFFFF;
+
+  /* ---- Цвета: акценты (логотип циклится по трём) ---- */
+  --rtr-lime:          #D9F201;
+  --rtr-indigo:        #4654FE;
+  --rtr-orange-light:  #ED6D33;  /* вторичный оранжевый */
+  --rtr-orange-tint:   #FFDDD6;  /* мягкая подложка/hover */
+
+  /* ---- Нейтральные ---- */
+  --rtr-gray-700:      #787878;
+  --rtr-gray-500:      #939393;
+  --rtr-gray-200:      #EDEDED;
+  --rtr-gray-100:      #F6F6F6;
+  --rtr-border:        #D0D5DD;
+
+  /* ---- Полупрозрачные ---- */
+  --rtr-ink-60:        rgba(28,28,28,.6);
+  --rtr-cream-60:      rgba(249,245,239,.6);
+
+  /* ---- Шрифты ---- */
+  --rtr-font-display:  'Roboto Condensed', sans-serif;  /* заголовки, дисплей */
+  --rtr-font-body:     'Roboto', sans-serif;            /* основной текст */
+
+  /* ---- Веса ---- */
+  --rtr-w-regular: 400;
+  --rtr-w-medium:  500;
+  --rtr-w-bold:    700;
+  --rtr-w-black:   800;
+  --rtr-w-heavy:   900;
+
+  /* ---- Шкала кегля (px) ---- */
+  --rtr-fs-caption:  12px;
+  --rtr-fs-small:    14px;
+  --rtr-fs-body:     16px;
+  --rtr-fs-lead:     18px;
+  --rtr-fs-h3:       22px;
+  --rtr-fs-h2:       28px;
+  --rtr-fs-h1:       36px;
+  --rtr-fs-display:  76px;   /* дисплей: 65–83 в зависимости от блока */
+
+  /* ---- Трекинг ---- */
+  --rtr-track-display: -.04em;  /* плотный для крупного дисплея */
+  --rtr-track-head:    -.02em;
+  --rtr-track-label:    .08em;  /* разрядка для капс-меток */
+
+  /* ---- Радиусы ---- */
+  --rtr-r-input:   6px;
+  --rtr-r-sm:      8px;
+  --rtr-r-card:    20px;
+  --rtr-r-button:  30px;   /* кнопки */
+  --rtr-r-pill:    999px;  /* теги, круглые элементы */
+
+  /* ---- Отступы ---- */
+  --rtr-space-1:  4px;
+  --rtr-space-2:  8px;
+  --rtr-space-3:  12px;
+  --rtr-space-4:  16px;
+  --rtr-space-6:  24px;
+  --rtr-space-8:  32px;
+  --rtr-space-12: 48px;
+  --rtr-space-16: 64px;
+  --rtr-space-20: 80px;
+
+  /* ---- Тени ---- */
+  --rtr-shadow-card: 0 8px 24px rgba(28,28,28,.08);
+  --rtr-glow-orange: 0 0 22px rgba(245,74,34,.45);
+  --rtr-glow-lime:   0 0 22px rgba(217,242,1,.55);
+  --rtr-glow-indigo: 0 0 22px rgba(70,84,254,.45);
+}

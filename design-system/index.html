@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RunToRam · Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: var(--rtr-font-body);
+    color: var(--rtr-ink);
+    background: var(--rtr-cream);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px 100px; }
+
+  /* labels */
+  .label {
+    font-family: var(--rtr-font-display); font-weight: 700;
+    text-transform: uppercase; letter-spacing: var(--rtr-track-label);
+    font-size: 12px; color: var(--rtr-gray-500);
+  }
+  h2.sec-title {
+    font-family: var(--rtr-font-display); font-weight: 800;
+    font-size: var(--rtr-fs-h1); letter-spacing: var(--rtr-track-head);
+    margin: 10px 0 4px;
+  }
+  .sec-note { color: var(--rtr-gray-700); font-size: 15px; max-width: 620px; }
+  section { padding: 56px 0 8px; border-top: 1px solid var(--rtr-gray-200); }
+  section:first-of-type { border-top: none; }
+
+  /* ---------- HEADER ---------- */
+  header.hero {
+    background: linear-gradient(135deg,#EEF0FF 0%, var(--rtr-cream) 60%);
+    border-radius: 0 0 28px 28px;
+  }
+  .hero-inner { max-width:1080px; margin:0 auto; padding:46px 28px 40px;
+    display:flex; align-items:center; gap:30px; flex-wrap:wrap; }
+  .hero img { height:128px; width:auto; filter: drop-shadow(0 14px 26px rgba(70,84,254,.18)); }
+  .hero h1 { font-family:var(--rtr-font-display); font-weight:900;
+    font-size:60px; letter-spacing:var(--rtr-track-display); line-height:.92; }
+  .hero h1 .o { color: var(--rtr-orange); }
+  .hero p { color:var(--rtr-gray-700); margin-top:10px; max-width:460px; }
+  .hero .meta { font-family:var(--rtr-font-display); font-weight:700; font-size:12px;
+    text-transform:uppercase; letter-spacing:var(--rtr-track-label); color:var(--rtr-gray-500); }
+
+  /* ---------- COLOR SWATCHES ---------- */
+  .sw-grid { display:grid; gap:14px; margin-top:22px; }
+  .c4 { grid-template-columns: repeat(4, 1fr); }
+  .c6 { grid-template-columns: repeat(6, 1fr); }
+  .sw { border-radius:14px; overflow:hidden; box-shadow:var(--rtr-shadow-card);
+    cursor:pointer; transition:transform .15s ease; background:#fff; }
+  .sw:hover { transform: translateY(-3px); }
+  .sw .chip { height:84px; }
+  .sw .m { padding:10px 12px; }
+  .sw .nm { font-family:var(--rtr-font-display); font-weight:700; font-size:14px; }
+  .sw .hx { font-size:12px; color:var(--rtr-gray-500); letter-spacing:.02em; }
+  .sw small.role { display:block; font-size:11px; color:var(--rtr-gray-500); margin-top:2px; }
+
+  /* ---------- TYPE ---------- */
+  .type-card { background:#fff; border-radius:var(--rtr-r-card); padding:26px 30px;
+    margin-top:22px; box-shadow:var(--rtr-shadow-card); }
+  .specimen { display:flex; align-items:baseline; gap:18px; padding:10px 0;
+    border-bottom:1px dashed var(--rtr-gray-200); }
+  .specimen:last-child { border-bottom:none; }
+  .specimen .tag { font-size:11px; color:var(--rtr-gray-500); width:120px; flex:none;
+    font-family:var(--rtr-font-body); }
+  .disp { font-family:var(--rtr-font-display); font-weight:800; letter-spacing:var(--rtr-track-display); }
+
+  /* ---------- SIGNATURE ---------- */
+  .panel { border-radius:var(--rtr-r-card); padding:30px; margin-top:16px; }
+  .hl { font-family:var(--rtr-font-display); font-weight:800; display:inline-block;
+    padding:.02em .22em; border-radius:6px; letter-spacing:-.02em; }
+  .outline { color:transparent; -webkit-text-stroke:3px var(--rtr-ink); }
+
+  /* ---------- 3D OBJECTS ---------- */
+  .glass-row { display:flex; gap:14px; align-items:center; justify-content:center;
+    flex-wrap:wrap; margin-top:20px; background:linear-gradient(135deg,#EEF0FF,#F9F5EF);
+    border-radius:var(--rtr-r-card); padding:28px; }
+
+  /* ---------- COMPONENTS ---------- */
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .btn { font-family:var(--rtr-font-display); font-weight:700; font-size:15px;
+    border:none; padding:13px 28px; border-radius:var(--rtr-r-button); cursor:pointer; }
+  .btn-outline { background:transparent; color:var(--rtr-ink);
+    border:1.5px solid var(--rtr-ink); padding:11.5px 26px; }
+  .pill { font-family:var(--rtr-font-display); font-weight:700; font-size:12px;
+    text-transform:uppercase; letter-spacing:.05em; padding:7px 16px; border-radius:var(--rtr-r-pill); }
+  .card { border-radius:var(--rtr-r-card); padding:22px; width:230px; }
+  .input { font-family:var(--rtr-font-body); font-size:15px; padding:13px 16px;
+    border:1px solid var(--rtr-border); border-radius:var(--rtr-r-input); width:230px; height:48px; }
+
+  .arrows { width:100%; height:auto; display:block; border-radius:10px; margin-top:18px; }
+  .copy-hint { font-size:12px; color:var(--rtr-gray-500); margin-top:14px; }
+  footer { margin-top:64px; padding-top:28px; border-top:1px solid var(--rtr-gray-200);
+    color:var(--rtr-gray-500); font-size:13px; }
+  footer code { background:var(--rtr-gray-100); padding:2px 6px; border-radius:5px;
+    font-size:12px; color:var(--rtr-ink); }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <img src="assets/glass-logo.png" alt="RunToRam logo">
+    <div>
+      <div class="meta">Design System · v1</div>
+      <h1>Run<span class="o">To</span>Ram</h1>
+      <p>Дизайн-система сервиса обмена электронных валют. Извлечена с info.runtoram.com и сведена с фирменными ассетами.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== LOGO ===== -->
+  <section>
+    <div class="label">01 · Логотип</div>
+    <h2 class="sec-title">Знак</h2>
+    <p class="sec-note">Логотип-стрелка со свечением. Циклится по трём фирменным акцентам — оранж → лайм → индиго. Есть 3D-стеклянная версия для обложек и hero-блоков.</p>
+    <div class="row" style="margin-top:24px; gap:24px; justify-content:center;">
+      <img src="assets/logo-lime.png"   alt="lime"   style="width:150px;height:150px;object-fit:contain">
+      <img src="assets/logo-orange.png" alt="orange" style="width:150px;height:150px;object-fit:contain">
+      <img src="assets/logo-indigo.png" alt="indigo" style="width:150px;height:150px;object-fit:contain">
+    </div>
+    <img class="arrows" src="assets/arrows-strip.png" alt="arrows pattern">
+    <p class="copy-hint">Лента-паттерн из знаков — фоновый / разделительный элемент.</p>
+  </section>
+
+  <!-- ===== COLORS ===== -->
+  <section>
+    <div class="label">02 · Палитра</div>
+    <h2 class="sec-title">Цвета</h2>
+    <p class="sec-note">Кликни по плашке — HEX скопируется в буфер.</p>
+
+    <div class="label" style="margin-top:26px;">Ядро</div>
+    <div class="sw-grid c4">
+      <div class="sw" data-hex="#F54A22"><div class="chip" style="background:#F54A22"></div><div class="m"><div class="nm">Orange</div><div class="hx">#F54A22</div><small class="role">Акцент / CTA</small></div></div>
+      <div class="sw" data-hex="#1C1C1C"><div class="chip" style="background:#1C1C1C"></div><div class="m"><div class="nm">Ink</div><div class="hx">#1C1C1C</div><small class="role">Текст / тёмное</small></div></div>
+      <div class="sw" data-hex="#F9F5EF"><div class="chip" style="background:#F9F5EF;border-bottom:1px solid #EDEDED"></div><div class="m"><div class="nm">Cream</div><div class="hx">#F9F5EF</div><small class="role">Светлый фон</small></div></div>
+      <div class="sw" data-hex="#FFFFFF"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #EDEDED"></div><div class="m"><div class="nm">White</div><div class="hx">#FFFFFF</div><small class="role">Чистый фон</small></div></div>
+    </div>
+
+    <div class="label" style="margin-top:26px;">Акценты</div>
+    <div class="sw-grid c4">
+      <div class="sw" data-hex="#D9F201"><div class="chip" style="background:#D9F201"></div><div class="m"><div class="nm">Lime</div><div class="hx">#D9F201</div><small class="role">Акцент / бейдж</small></div></div>
+      <div class="sw" data-hex="#4654FE"><div class="chip" style="background:#4654FE"></div><div class="m"><div class="nm">Indigo</div><div class="hx">#4654FE</div><small class="role">Акцент / тёмные карточки</small></div></div>
+      <div class="sw" data-hex="#ED6D33"><div class="chip" style="background:#ED6D33"></div><div class="m"><div class="nm">Orange Light</div><div class="hx">#ED6D33</div><small class="role">Вторичный</small></div></div>
+      <div class="sw" data-hex="#FFDDD6"><div class="chip" style="background:#FFDDD6"></div><div class="m"><div class="nm">Orange Tint</div><div class="hx">#FFDDD6</div><small class="role">Подложка / hover</small></div></div>
+    </div>
+
+    <div class="label" style="margin-top:26px;">Нейтральные</div>
+    <div class="sw-grid c6">
+      <div class="sw" data-hex="#787878"><div class="chip" style="height:52px;background:#787878"></div><div class="m"><div class="hx">#787878</div></div></div>
+      <div class="sw" data-hex="#939393"><div class="chip" style="height:52px;background:#939393"></div><div class="m"><div class="hx">#939393</div></div></div>
+      <div class="sw" data-hex="#D0D5DD"><div class="chip" style="height:52px;background:#D0D5DD"></div><div class="m"><div class="hx">#D0D5DD</div></div></div>
+      <div class="sw" data-hex="#EDEDED"><div class="chip" style="height:52px;background:#EDEDED"></div><div class="m"><div class="hx">#EDEDED</div></div></div>
+      <div class="sw" data-hex="#F6F6F6"><div class="chip" style="height:52px;background:#F6F6F6;border-bottom:1px solid #EDEDED"></div><div class="m"><div class="hx">#F6F6F6</div></div></div>
+      <div class="sw" data-hex="#F9F5EF"><div class="chip" style="height:52px;background:#F9F5EF;border-bottom:1px solid #EDEDED"></div><div class="m"><div class="hx">#F9F5EF</div></div></div>
+    </div>
+  </section>
+
+  <!-- ===== TYPOGRAPHY ===== -->
+  <section>
+    <div class="label">03 · Типографика</div>
+    <h2 class="sec-title">Шрифты и шкала</h2>
+    <p class="sec-note"><b>Roboto Condensed</b> — заголовки и дисплей (700/800/900, плотный трекинг). <b>Roboto</b> — основной текст.</p>
+    <div class="type-card">
+      <div class="disp" style="font-size:64px; line-height:1; color:var(--rtr-ink);">Roboto Condensed</div>
+      <div style="color:var(--rtr-gray-700); margin:6px 0 18px;">Дисплей и заголовки · −0.04em трекинг</div>
+      <div class="specimen"><span class="tag">Display · 76px · 800</span><span class="disp" style="font-size:76px;">USDT</span></div>
+      <div class="specimen"><span class="tag">H1 · 36px · 800</span><span class="disp" style="font-size:36px;">Обмен валют</span></div>
+      <div class="specimen"><span class="tag">H2 · 28px · 800</span><span class="disp" style="font-size:28px;">Наличные в 35 странах</span></div>
+      <div class="specimen"><span class="tag">H3 · 22px · 700</span><span class="disp" style="font-size:22px;font-weight:700;">Реферальная программа</span></div>
+      <div class="specimen"><span class="tag">Caption · 12px · 700</span><span style="font-family:var(--rtr-font-display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--rtr-gray-500);">Безопасно · Быстро · 24/7</span></div>
+    </div>
+    <div class="type-card">
+      <div style="font-family:var(--rtr-font-body);font-weight:700;font-size:24px;">Roboto — основной текст</div>
+      <div class="specimen" style="border-bottom:none;"><span class="tag">Lead · 18px · 500</span><span style="font-size:18px;font-weight:500;">Обмен USDT на наличные без скрытых комиссий.</span></div>
+      <div class="specimen" style="border-bottom:none;"><span class="tag">Body · 16px · 400</span><span style="font-size:16px;">Работаем с 2018 года, страхуем каждую сделку и предлагаем честный курс. Офисы в Москве, Петербурге, Сочи.</span></div>
+      <div class="specimen" style="border-bottom:none;"><span class="tag">Small · 14px · 400</span><span style="font-size:14px;color:var(--rtr-gray-700);">Сноски, подписи, второстепенный текст.</span></div>
+    </div>
+  </section>
+
+  <!-- ===== SIGNATURE ===== -->
+  <section>
+    <div class="label">04 · Сигнатурные приёмы</div>
+    <h2 class="sec-title">Фирменный почерк</h2>
+
+    <div class="panel" style="background:linear-gradient(120deg,#FF8A5E,#F54A22 55%,#E0380F);">
+      <div class="label" style="color:#fff;opacity:.85;">Заголовки с заливкой</div>
+      <div class="disp" style="font-size:52px;line-height:1;color:#fff;margin-top:8px;">
+        We <span class="hl" style="background:#fff;color:var(--rtr-orange)">make</span> money <span class="hl" style="background:var(--rtr-ink);color:#fff">moves</span>
+      </div>
+      <div class="row" style="margin-top:20px;">
+        <span class="hl" style="background:var(--rtr-ink);color:var(--rtr-cream);font-size:22px">обмен</span>
+        <span class="hl" style="background:var(--rtr-indigo);color:#fff;font-size:22px">обмен</span>
+        <span class="hl" style="background:var(--rtr-lime);color:var(--rtr-ink);font-size:22px">обмен</span>
+        <span class="hl" style="background:#fff;color:var(--rtr-orange);font-size:22px">обмен</span>
+      </div>
+    </div>
+
+    <div class="panel" style="background:linear-gradient(135deg,#7E88FF,#4654FE 45%,#E9EAFF);">
+      <div class="label" style="color:#fff;opacity:.9;">Дисплей · контур · скобки</div>
+      <div class="disp" style="font-size:72px;line-height:.86;color:var(--rtr-ink);margin-top:8px;">RUB · USDT</div>
+      <div class="disp outline" style="font-size:72px;line-height:.86;">{ USD }</div>
+      <div class="disp" style="font-size:72px;line-height:.86;color:var(--rtr-ink);">EURO</div>
+      <div class="row" style="margin-top:18px;align-items:baseline;">
+        <span class="disp" style="font-size:48px;color:var(--rtr-orange)">USDT</span>
+        <span class="disp outline" style="font-size:48px;-webkit-text-stroke-color:var(--rtr-orange)">USDT</span>
+        <span class="disp" style="font-size:48px;color:var(--rtr-lime);text-shadow:0 1px 0 rgba(0,0,0,.15)">USDT</span>
+        <span class="disp outline" style="font-size:48px;-webkit-text-stroke-color:#fff;color:transparent">USDT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3D OBJECTS ===== -->
+  <section>
+    <div class="label">05 · 3D-объекты</div>
+    <h2 class="sec-title">Стеклянные ассеты</h2>
+    <p class="sec-note">Объёмный «акриловый» логотип, скобка <code>{</code> и стрелка <code>→</code> — для обложек, hero-блоков и акцентных стикеров.</p>
+    <div class="glass-row">
+      <img src="assets/glass-logo.png"  alt="glass logo"  style="height:220px;object-fit:contain">
+      <img src="assets/glass-brace.png" alt="glass brace" style="height:220px;object-fit:contain">
+      <img src="assets/glass-arrow.png" alt="glass arrow" style="height:190px;object-fit:contain">
+    </div>
+  </section>
+
+  <!-- ===== COMPONENTS ===== -->
+  <section>
+    <div class="label">06 · Компоненты</div>
+    <h2 class="sec-title">UI-элементы</h2>
+
+    <div class="label" style="margin-top:24px;">Кнопки</div>
+    <div class="row" style="margin-top:12px;">
+      <button class="btn" style="background:var(--rtr-orange);color:#fff">Отправить заявку</button>
+      <button class="btn" style="background:var(--rtr-ink);color:#fff">Тёмная</button>
+      <button class="btn" style="background:var(--rtr-indigo);color:#fff">Индиго</button>
+      <button class="btn" style="background:var(--rtr-lime);color:var(--rtr-ink)">Лайм</button>
+      <button class="btn btn-outline">Контурная</button>
+    </div>
+
+    <div class="label" style="margin-top:28px;">Теги / бейджи</div>
+    <div class="row" style="margin-top:12px;">
+      <span class="pill" style="background:var(--rtr-orange);color:#fff">Hot</span>
+      <span class="pill" style="background:var(--rtr-lime);color:var(--rtr-ink)">New</span>
+      <span class="pill" style="background:var(--rtr-indigo);color:#fff">Pro</span>
+      <span class="pill" style="background:var(--rtr-ink);color:var(--rtr-cream)">Safe</span>
+      <span class="pill" style="background:var(--rtr-orange-tint);color:var(--rtr-orange)">−30%</span>
+    </div>
+
+    <div class="label" style="margin-top:28px;">Карточки и поле</div>
+    <div class="row" style="margin-top:12px; align-items:stretch;">
+      <div class="card" style="background:var(--rtr-cream);box-shadow:var(--rtr-shadow-card);">
+        <img src="assets/logo-orange.png" style="width:42px;height:42px;object-fit:contain;margin:-6px 0 4px -4px">
+        <div class="disp" style="font-weight:800;font-size:20px;">Светлая</div>
+        <p style="font-size:13px;color:var(--rtr-gray-700);margin-top:6px;">radius 20px · крем · тень</p>
+      </div>
+      <div class="card" style="background:var(--rtr-indigo);color:#fff;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--rtr-lime);color:var(--rtr-ink);display:flex;align-items:center;justify-content:center;font-family:var(--rtr-font-display);font-weight:800;">$</div>
+        <div class="disp" style="font-weight:800;font-size:20px;margin-top:12px;">Акцентная</div>
+        <p style="font-size:13px;opacity:.85;margin-top:6px;">индиго · светлый текст</p>
+      </div>
+      <div class="card" style="background:var(--rtr-ink);color:var(--rtr-cream);">
+        <div class="disp" style="font-weight:800;font-size:20px;">Тёмная</div>
+        <p style="font-size:13px;opacity:.7;margin-top:6px;">ink · крем-текст</p>
+      </div>
+      <input class="input" placeholder="Сумма в USDT">
+    </div>
+  </section>
+
+  <footer>
+    Источник правды для разработки — <code>tokens.css</code>. Бренд-правила словами — <code>tokens.md</code>.
+    Страницу можно импортировать в Figma по слоям через плагин <b>html.to.design</b>.<br>
+    RunToRam · Design System v1 · извлечено с info.runtoram.com
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.sw').forEach(function(el){
+    el.addEventListener('click', function(){
+      var hex = el.getAttribute('data-hex');
+      navigator.clipboard && navigator.clipboard.writeText(hex);
+      var hx = el.querySelector('.hx'); if(!hx) return;
+      var old = hx.textContent; hx.textContent = 'скопировано ✓';
+      setTimeout(function(){ hx.textContent = old; }, 900);
+    });
+  });
+</script>
+</body>
+</html>
