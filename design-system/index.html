@@ -148,15 +148,16 @@
   .acc-a p { padding:0 24px 20px; font-size:15px; color:var(--rtr-gray-700); line-height:1.55; }
   .acc-item.open .acc-a { max-height:300px; }
   /* service cards (light / dark) */
-  .scard { background:#fff; border-radius:22px; padding:24px; position:relative; box-shadow:var(--rtr-shadow-card); }
+  .scard { background:#fff; border-radius:22px; padding:24px; box-shadow:var(--rtr-shadow-card); display:flex; flex-direction:column; }
   .scard h4 { font-family:var(--rtr-font-display); font-weight:800; font-size:19px; line-height:1.08; color:var(--rtr-ink); max-width:82%; }
   .scard .flow { display:flex; align-items:center; gap:12px; background:var(--rtr-cream); border-radius:14px; padding:16px 18px; margin-top:18px; }
   .scard .flow .lab2 { font-family:var(--rtr-font-display); font-weight:700; font-size:13px; color:var(--rtr-ink); line-height:1.1; white-space:nowrap; }
   .scard .flow svg { flex:1; min-width:50px; height:36px; }
   .scard .hl2 { background:var(--rtr-cream); border-radius:14px; padding:16px 18px; margin-top:18px;
     font-family:var(--rtr-font-display); font-weight:700; font-size:14px; color:var(--rtr-ink); line-height:1.25; }
-  .scard .desc { font-size:13px; color:var(--rtr-gray-700); margin-top:16px; max-width:72%; line-height:1.4; }
-  .scard .go { position:absolute; right:20px; bottom:20px; width:46px; height:46px; border-radius:12px;
+  .scard .desc { font-size:13px; color:var(--rtr-gray-700); line-height:1.4; }
+  .scard .bottom { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-top:auto; padding-top:18px; }
+  .scard .go { flex:none; width:46px; height:46px; border-radius:12px;
     background:var(--rtr-orange); display:flex; align-items:center; justify-content:center; }
   .scard.dark { background:var(--rtr-ink); box-shadow:none; }
   .scard.dark h4 { color:var(--rtr-cream); }
@@ -447,14 +448,12 @@
       <div class="scard">
         <h4 class="disp">Обмениваем USDT на наличные в рублях, долларах или евро</h4>
         <div class="flow"><span class="lab2">USDT</span><svg viewBox="0 0 200 50" preserveAspectRatio="xMidYMid meet"><path d="M6 38 H72 L112 14 H184" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M184 14 l-12 -5 M184 14 l-12 5" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round"/></svg><span class="lab2">Наличные<br>(RUB/USD/EUR)</span></div>
-        <p class="desc">Прозрачные условия без скрытых комиссий</p>
-        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+        <div class="bottom"><p class="desc">Прозрачные условия без скрытых комиссий</p><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span></div>
       </div>
       <div class="scard">
         <h4 class="disp">Выдаём наличные за границей</h4>
         <div class="hl2">Для ежедневных расходов или во время путешествий</div>
-        <p class="desc">Помогаем отправить и получить деньги в 35 странах по всему миру</p>
-        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+        <div class="bottom"><p class="desc">Помогаем отправить и получить деньги в 35 странах по всему миру</p><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span></div>
       </div>
     </div>
 
@@ -463,14 +462,12 @@
       <div class="scard dark">
         <h4 class="disp">Обмениваем наличные в USDT по хорошему курсу</h4>
         <div class="flow"><span class="lab2">Наличные<br>(RUB/USD/EUR)</span><svg viewBox="0 0 200 50" preserveAspectRatio="xMidYMid meet"><path d="M16 14 H88 L128 38 H194" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M194 38 l-12 -5 M194 38 l-12 5" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round"/></svg><span class="lab2">USDT</span></div>
-        <p class="desc">Большие объёмы, гибкие условия</p>
-        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+        <div class="bottom"><p class="desc">Большие объёмы, гибкие условия</p><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span></div>
       </div>
       <div class="scard dark">
         <h4 class="disp">Проводим легальные переводы между банками</h4>
         <div class="hl2">Белый банковский перевод с понятной историей для налоговой</div>
-        <p class="desc">Без санкционного маршрута и возвратов. Зачисление 1–2 дня</p>
-        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+        <div class="bottom"><p class="desc">Без санкционного маршрута и возвратов. Зачисление 1–2 дня</p><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span></div>
       </div>
     </div>
 
