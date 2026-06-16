@@ -119,6 +119,34 @@
     opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s ease; z-index:9999; }
   #copy-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   .sw, .grad, .mono, .mono-tile, img, .hl, .btn, .pill, .disp, code { cursor:copy; }
+  /* colored cards with arrow watermark */
+  .ccard { position:relative; overflow:hidden; border-radius:24px; padding:24px; min-height:172px; }
+  .ccard h4 { font-family:var(--rtr-font-display); font-weight:800; font-size:20px; line-height:1.06; max-width:78%; position:relative; z-index:1; }
+  .ccard .wm { position:absolute; right:-8px; bottom:-22px; width:158px; height:158px;
+    -webkit-mask:url(assets/logo-lime.png) center/contain no-repeat; mask:url(assets/logo-lime.png) center/contain no-repeat; }
+  /* feature cards */
+  .feat { display:flex; align-items:center; gap:18px; background:#fff; border-radius:20px;
+    padding:18px 24px; box-shadow:var(--rtr-shadow-card); }
+  .feat .ft { flex:1; }
+  .feat .ft h4 { font-family:var(--rtr-font-display); font-weight:800; font-size:18px; }
+  .feat .ft p { font-size:14px; color:var(--rtr-gray-700); margin-top:6px; line-height:1.45; }
+  .feat img { width:76px; height:76px; object-fit:contain; flex:none; }
+  /* jula decorative */
+  .jula-row { display:flex; gap:26px; justify-content:center; align-items:center;
+    background:var(--rtr-cream); border-radius:var(--rtr-r-card); padding:28px; flex-wrap:wrap; }
+  /* accordion */
+  .acc { display:flex; flex-direction:column; gap:12px; margin-top:22px; }
+  .acc-item { border:1.5px solid var(--rtr-ink); border-radius:18px; overflow:hidden; }
+  .acc-q { display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:17px 24px; cursor:pointer; font-family:var(--rtr-font-display); font-weight:700; font-size:17px; }
+  .acc-q .ic { flex:none; width:22px; height:22px; position:relative; transition:transform .22s ease; }
+  .acc-q .ic::before, .acc-q .ic::after { content:""; position:absolute; background:var(--rtr-ink); border-radius:2px; }
+  .acc-q .ic::before { left:0; right:0; top:10px; height:2px; }
+  .acc-q .ic::after { top:0; bottom:0; left:10px; width:2px; }
+  .acc-item.open .acc-q .ic { transform:rotate(45deg); }
+  .acc-a { max-height:0; overflow:hidden; transition:max-height .3s ease; }
+  .acc-a p { padding:0 24px 20px; font-size:15px; color:var(--rtr-gray-700); line-height:1.55; }
+  .acc-item.open .acc-a { max-height:300px; }
   footer { margin-top:64px; padding-top:28px; border-top:1px solid var(--rtr-gray-200);
     color:var(--rtr-gray-500); font-size:13px; }
   footer code { background:var(--rtr-gray-100); padding:2px 6px; border-radius:5px;
@@ -370,6 +398,48 @@
     </div>
   </section>
 
+  <!-- ===== CARDS & BLOCKS ===== -->
+  <section>
+    <div class="label">09 · Карточки и блоки</div>
+    <h2 class="sec-title">Фирменные приёмы</h2>
+
+    <div class="label" style="margin-top:24px;">Цветные карточки со стрелкой-водяным знаком</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px;">
+      <div class="ccard" style="background:var(--rtr-lime);color:var(--rtr-ink)"><h4 class="disp">Переводы через агентскую модель — без прямого санкционного маршрута</h4><span class="wm" style="background:rgba(0,0,0,.10)"></span></div>
+      <div class="ccard" style="background:var(--rtr-cream);color:var(--rtr-ink)"><h4 class="disp">Деньги не зависают и не возвращаются, как при SWIFT</h4><span class="wm" style="background:rgba(0,0,0,.07)"></span></div>
+      <div class="ccard" style="background:var(--rtr-indigo);color:#fff"><h4 class="disp">Фиксированная комиссия 5% — уже включает все расходы</h4><span class="wm" style="background:rgba(255,255,255,.20)"></span></div>
+      <div class="ccard" style="background:var(--rtr-orange);color:#fff"><h4 class="disp">Максимальная легальность — официальные агентские договоры</h4><span class="wm" style="background:rgba(255,255,255,.22)"></span></div>
+    </div>
+
+    <div class="label" style="margin-top:28px;">Карточки-фичи · 3D-иконка + текст</div>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-top:12px;">
+      <div class="feat"><div class="ft"><h4 class="disp">0,3% от каждой сделки реферала</h4><p>Платим за каждую сделку приглашённого вами пользователя.</p></div><img src="assets/icon3d-handshake.png" alt="handshake"></div>
+      <div class="feat"><div class="ft"><h4 class="disp">Присутствие в 35 странах</h4><p>Наличные и переводы по всему миру.</p></div><img src="assets/icon3d-globe.png" alt="globe"></div>
+      <div class="feat"><div class="ft"><h4 class="disp">Прозрачно, без рисков и чёрных схем</h4><p>Понятная история операций и официальные договоры.</p></div><img src="assets/icon3d-lock.png" alt="lock"></div>
+    </div>
+
+    <div class="label" style="margin-top:28px;">Декоративные «юла»-блобы</div>
+    <div class="jula-row">
+      <svg width="124" height="124" viewBox="0 0 200 200" aria-label="orange"><defs><radialGradient id="jg-o" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFC4A6"/><stop offset="42%" stop-color="#F54A22"/><stop offset="100%" stop-color="#F54A22" stop-opacity="0"/></radialGradient><filter id="jb-o" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter></defs><path d="M100 10C112 72 128 88 190 100C128 112 112 128 100 190C88 128 72 112 10 100C72 88 88 72 100 10Z" fill="url(#jg-o)" filter="url(#jb-o)"/></svg>
+      <svg width="124" height="124" viewBox="0 0 200 200" aria-label="indigo"><defs><radialGradient id="jg-i" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#AEB6FF"/><stop offset="42%" stop-color="#4654FE"/><stop offset="100%" stop-color="#4654FE" stop-opacity="0"/></radialGradient><filter id="jb-i" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter></defs><path d="M100 10C112 72 128 88 190 100C128 112 112 128 100 190C88 128 72 112 10 100C72 88 88 72 100 10Z" fill="url(#jg-i)" filter="url(#jb-i)"/></svg>
+      <svg width="124" height="124" viewBox="0 0 200 200" aria-label="lime"><defs><radialGradient id="jg-l" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#F2FF9E"/><stop offset="42%" stop-color="#D9F201"/><stop offset="100%" stop-color="#D9F201" stop-opacity="0"/></radialGradient><filter id="jb-l" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter></defs><path d="M100 10C112 72 128 88 190 100C128 112 112 128 100 190C88 128 72 112 10 100C72 88 88 72 100 10Z" fill="url(#jg-l)" filter="url(#jb-l)"/></svg>
+    </div>
+    <p class="copy-hint">Стрелка-водяной знак на карточке + крупный заголовок · 3D-иконка справа · «юла»-блобы как фон/акцент.</p>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <div class="label">10 · FAQ</div>
+    <h2 class="sec-title">Аккордеон</h2>
+    <p class="sec-note">Кликни вопрос — раскроется ответ, «+» превращается в «×».</p>
+    <div class="acc">
+      <div class="acc-item open"><div class="acc-q"><span>Может ли обычный человек, не разбирающийся в крипте, зарабатывать с вами?</span><span class="ic"></span></div><div class="acc-a"><p>Да. Достаточно приглашать людей по реферальной ссылке — остальное делаем мы.</p></div></div>
+      <div class="acc-item"><div class="acc-q"><span>На какой процент я могу рассчитывать?</span><span class="ic"></span></div><div class="acc-a"><p>0,3% от суммы каждой сделки вашего реферала.</p></div></div>
+      <div class="acc-item"><div class="acc-q"><span>Сколько я смогу зарабатывать?</span><span class="ic"></span></div><div class="acc-a"><p>Потолка нет. Средний чек одной сделки — 1 300 000 ₽, при комиссии 0,3% это ~3 900 ₽ с одной сделки.</p></div></div>
+      <div class="acc-item"><div class="acc-q"><span>Как получить реферальную ссылку?</span><span class="ic"></span></div><div class="acc-a"><p>В личном кабинете — раздел «Реферальная программа».</p></div></div>
+    </div>
+  </section>
+
   <footer>
     Источник правды для разработки — <code>tokens.css</code>. Бренд-правила словами — <code>tokens.md</code>.
     Страницу можно импортировать в Figma по слоям через плагин <b>html.to.design</b>.<br>
@@ -397,6 +467,7 @@
     catch(e){ flash('Браузер не поддерживает копирование картинок'); }
   }
   document.addEventListener('click', function(e){
+    var aq=e.target.closest('.acc-q'); if(aq){ aq.parentElement.classList.toggle('open'); return; }
     var code=e.target.closest('code'); if(code){ copyText(code.textContent.trim()); return; }
     var sw=e.target.closest('.sw'); if(sw&&sw.dataset.hex){ copyText(sw.dataset.hex); return; }
     var grad=e.target.closest('.grad'); if(grad){ var g=grad.querySelector('.gsw'); if(g) copyText(getComputedStyle(g).backgroundImage); return; }
