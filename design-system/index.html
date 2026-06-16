@@ -113,6 +113,15 @@
   .grad .gm { padding:9px 12px 11px; }
   .grad .gn { font-family:var(--rtr-font-display); font-weight:700; font-size:13px; }
   .grad code { display:block; margin-top:3px; font-size:10px; color:var(--rtr-gray-500); }
+  .copy-banner { margin-top:22px; padding:11px 16px; background:var(--rtr-ink); color:var(--rtr-cream);
+    border-radius:12px; font-size:13px; font-family:var(--rtr-font-body); }
+  .copy-banner b { color:#fff; }
+  #copy-toast { position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(16px);
+    background:var(--rtr-ink); color:#fff; font-family:var(--rtr-font-display); font-weight:700;
+    font-size:14px; padding:11px 22px; border-radius:var(--rtr-r-pill); box-shadow:0 10px 30px rgba(0,0,0,.28);
+    opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s ease; z-index:9999; }
+  #copy-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+  .sw, .grad, .mono, .mono-tile, img, .hl, .btn, .pill, .disp, code { cursor:copy; }
   footer { margin-top:64px; padding-top:28px; border-top:1px solid var(--rtr-gray-200);
     color:var(--rtr-gray-500); font-size:13px; }
   footer code { background:var(--rtr-gray-100); padding:2px 6px; border-radius:5px;
@@ -134,6 +143,8 @@
 </header>
 
 <div class="wrap">
+
+  <div class="copy-banner">📋 Клик по элементу копирует его: <b>картинка</b> → вставь в Figma (⌘V) · <b>цвет</b> → HEX · <b>градиент / токен</b> → CSS · <b>текст</b> → текст</div>
 
   <!-- ===== LOGO ===== -->
   <section>
@@ -354,15 +365,33 @@
 </div>
 
 <script>
-  document.querySelectorAll('.sw').forEach(function(el){
-    el.addEventListener('click', function(){
-      var hex = el.getAttribute('data-hex');
-      navigator.clipboard && navigator.clipboard.writeText(hex);
-      var hx = el.querySelector('.hx'); if(!hx) return;
-      var old = hx.textContent; hx.textContent = 'скопировано ✓';
-      setTimeout(function(){ hx.textContent = old; }, 900);
-    });
+(function(){
+  var toast=document.createElement('div'); toast.id='copy-toast'; document.body.appendChild(toast);
+  var tm;
+  function flash(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(tm); tm=setTimeout(function(){toast.classList.remove('show');},1500); }
+  function copyText(s){ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(s).then(function(){ flash('Скопировано: '+(s.length>44?s.slice(0,42)+'…':s)); },function(){ flash('Не удалось скопировать'); }); } }
+  function copyImg(url){
+    try{ var it=new ClipboardItem({'image/png': fetch(url).then(function(r){return r.blob();})});
+      navigator.clipboard.write([it]).then(function(){ flash('Картинка скопирована — вставь в Figma (⌘V)'); },function(){ flash('Не удалось скопировать картинку'); });
+    }catch(e){ flash('Браузер не поддерживает копирование картинок'); }
+  }
+  function copyMono(el){
+    var mi=el.style.webkitMaskImage||el.style.maskImage||''; var m=mi.match(/url\(["']?([^"')]+)["']?\)/); if(!m) return;
+    var color=getComputedStyle(el).backgroundColor;
+    var blobP=new Promise(function(res){ var img=new Image(); img.onload=function(){ var c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight; var x=c.getContext('2d'); x.fillStyle=color; x.fillRect(0,0,c.width,c.height); x.globalCompositeOperation='destination-in'; x.drawImage(img,0,0); c.toBlob(res); }; img.onerror=function(){res(null);}; img.src=m[1]; });
+    try{ navigator.clipboard.write([new ClipboardItem({'image/png': blobP})]).then(function(){ flash('Иконка скопирована — вставь в Figma (⌘V)'); },function(){ flash('Не удалось скопировать'); }); }
+    catch(e){ flash('Браузер не поддерживает копирование картинок'); }
+  }
+  document.addEventListener('click', function(e){
+    var code=e.target.closest('code'); if(code){ copyText(code.textContent.trim()); return; }
+    var sw=e.target.closest('.sw'); if(sw&&sw.dataset.hex){ copyText(sw.dataset.hex); return; }
+    var grad=e.target.closest('.grad'); if(grad){ var g=grad.querySelector('.gsw'); if(g) copyText(getComputedStyle(g).backgroundImage); return; }
+    var tile=e.target.closest('.mono-tile'); if(tile){ var mn=tile.querySelector('.mono'); if(mn){ copyMono(mn); return; } }
+    var mono=e.target.closest('.mono'); if(mono){ copyMono(mono); return; }
+    var img=e.target.closest('img'); if(img){ copyImg(img.currentSrc||img.src); return; }
+    var txt=e.target.closest('.disp,.hl,.btn,.pill,.specimen'); if(txt){ copyText(txt.textContent.trim()); return; }
   });
+})();
 </script>
 </body>
 </html>
