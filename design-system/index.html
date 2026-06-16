@@ -163,6 +163,14 @@
   .scard.dark .flow, .scard.dark .hl2 { background:#2B2B2B; }
   .scard.dark .flow .lab2, .scard.dark .hl2 { color:var(--rtr-cream); }
   .scard.dark .desc { color:rgba(249,245,239,.55); }
+  /* hover: карточка заливается оранжевым */
+  .scard { cursor:pointer; transition:background .22s ease, box-shadow .22s ease, transform .22s ease; }
+  .scard:hover { background:var(--rtr-orange); box-shadow:0 16px 38px rgba(245,74,34,.32); transform:translateY(-3px); }
+  .scard:hover h4, .scard:hover .flow .lab2, .scard:hover .hl2 { color:#fff; }
+  .scard:hover .flow, .scard:hover .hl2 { background:rgba(255,255,255,.16); }
+  .scard:hover .flow svg path { stroke:#fff; }
+  .scard:hover .desc { color:rgba(255,255,255,.85); }
+  .scard:hover .go { background:rgba(255,255,255,.18); }
   footer { margin-top:64px; padding-top:28px; border-top:1px solid var(--rtr-gray-200);
     color:var(--rtr-gray-500); font-size:13px; }
   footer code { background:var(--rtr-gray-100); padding:2px 6px; border-radius:5px;
