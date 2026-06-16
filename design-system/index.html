@@ -147,6 +147,22 @@
   .acc-a { max-height:0; overflow:hidden; transition:max-height .3s ease; }
   .acc-a p { padding:0 24px 20px; font-size:15px; color:var(--rtr-gray-700); line-height:1.55; }
   .acc-item.open .acc-a { max-height:300px; }
+  /* service cards (light / dark) */
+  .scard { background:#fff; border-radius:22px; padding:24px; position:relative; box-shadow:var(--rtr-shadow-card); }
+  .scard h4 { font-family:var(--rtr-font-display); font-weight:800; font-size:19px; line-height:1.08; color:var(--rtr-ink); max-width:82%; }
+  .scard .flow { display:flex; align-items:center; gap:12px; background:var(--rtr-cream); border-radius:14px; padding:16px 18px; margin-top:18px; }
+  .scard .flow .lab2 { font-family:var(--rtr-font-display); font-weight:700; font-size:13px; color:var(--rtr-ink); line-height:1.1; white-space:nowrap; }
+  .scard .flow svg { flex:1; min-width:50px; height:36px; }
+  .scard .hl2 { background:var(--rtr-cream); border-radius:14px; padding:16px 18px; margin-top:18px;
+    font-family:var(--rtr-font-display); font-weight:700; font-size:14px; color:var(--rtr-ink); line-height:1.25; }
+  .scard .desc { font-size:13px; color:var(--rtr-gray-700); margin-top:16px; max-width:72%; line-height:1.4; }
+  .scard .go { position:absolute; right:20px; bottom:20px; width:46px; height:46px; border-radius:12px;
+    background:var(--rtr-orange); display:flex; align-items:center; justify-content:center; }
+  .scard.dark { background:var(--rtr-ink); box-shadow:none; }
+  .scard.dark h4 { color:var(--rtr-cream); }
+  .scard.dark .flow, .scard.dark .hl2 { background:#2B2B2B; }
+  .scard.dark .flow .lab2, .scard.dark .hl2 { color:var(--rtr-cream); }
+  .scard.dark .desc { color:rgba(249,245,239,.55); }
   footer { margin-top:64px; padding-top:28px; border-top:1px solid var(--rtr-gray-200);
     color:var(--rtr-gray-500); font-size:13px; }
   footer code { background:var(--rtr-gray-100); padding:2px 6px; border-radius:5px;
@@ -416,6 +432,38 @@
       <div class="feat"><div class="ft"><h4 class="disp">0,3% от каждой сделки реферала</h4><p>Платим за каждую сделку приглашённого вами пользователя.</p></div><img src="assets/icon3d-handshake.png" alt="handshake"></div>
       <div class="feat"><div class="ft"><h4 class="disp">Присутствие в 35 странах</h4><p>Наличные и переводы по всему миру.</p></div><img src="assets/icon3d-globe.png" alt="globe"></div>
       <div class="feat"><div class="ft"><h4 class="disp">Прозрачно, без рисков и чёрных схем</h4><p>Понятная история операций и официальные договоры.</p></div><img src="assets/icon3d-lock.png" alt="lock"></div>
+    </div>
+
+    <div class="label" style="margin-top:28px;">Сервисные карточки · светлая тема</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px;">
+      <div class="scard">
+        <h4 class="disp">Обмениваем USDT на наличные в рублях, долларах или евро</h4>
+        <div class="flow"><span class="lab2">USDT</span><svg viewBox="0 0 200 50" preserveAspectRatio="xMidYMid meet"><path d="M6 38 H72 L112 14 H184" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M184 14 l-12 -5 M184 14 l-12 5" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round"/></svg><span class="lab2">Наличные<br>(RUB/USD/EUR)</span></div>
+        <p class="desc">Прозрачные условия без скрытых комиссий</p>
+        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+      </div>
+      <div class="scard">
+        <h4 class="disp">Выдаём наличные за границей</h4>
+        <div class="hl2">Для ежедневных расходов или во время путешествий</div>
+        <p class="desc">Помогаем отправить и получить деньги в 35 странах по всему миру</p>
+        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+      </div>
+    </div>
+
+    <div class="label" style="margin-top:24px;">Сервисные карточки · тёмная тема</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px;">
+      <div class="scard dark">
+        <h4 class="disp">Обмениваем наличные в USDT по хорошему курсу</h4>
+        <div class="flow"><span class="lab2">Наличные<br>(RUB/USD/EUR)</span><svg viewBox="0 0 200 50" preserveAspectRatio="xMidYMid meet"><path d="M16 14 H88 L128 38 H194" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M194 38 l-12 -5 M194 38 l-12 5" fill="none" stroke="#F54A22" stroke-width="3.2" stroke-linecap="round"/></svg><span class="lab2">USDT</span></div>
+        <p class="desc">Большие объёмы, гибкие условия</p>
+        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+      </div>
+      <div class="scard dark">
+        <h4 class="disp">Проводим легальные переводы между банками</h4>
+        <div class="hl2">Белый банковский перевод с понятной историей для налоговой</div>
+        <p class="desc">Без санкционного маршрута и возвратов. Зачисление 1–2 дня</p>
+        <span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/></svg></span>
+      </div>
     </div>
 
     <div class="label" style="margin-top:28px;">Декоративные «юла»-блобы</div>
